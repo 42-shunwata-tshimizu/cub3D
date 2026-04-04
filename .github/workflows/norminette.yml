@@ -1,0 +1,35 @@
+name: Norminette Check
+
+on: [push, pull_request]
+
+env:
+  PYTHON_VERSION: '3.10'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  norminette:
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install norminette
+        run: python3 -m pip install "norminette==3.3.52"
+
+      - name: Run norminette
+        run: norminette includes/ src/
