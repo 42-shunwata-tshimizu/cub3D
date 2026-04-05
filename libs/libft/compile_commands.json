@@ -1,0 +1,56 @@
+[
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_isalnum.o ft_isalnum.c",
+  "file": "/home/taiga/practice/42/libft/ft_isalnum.c",
+  "output": "/home/taiga/practice/42/libft/ft_isalnum.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_isalpha.o ft_isalpha.c",
+  "file": "/home/taiga/practice/42/libft/ft_isalpha.c",
+  "output": "/home/taiga/practice/42/libft/ft_isalpha.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_isascii.o ft_isascii.c",
+  "file": "/home/taiga/practice/42/libft/ft_isascii.c",
+  "output": "/home/taiga/practice/42/libft/ft_isascii.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_isdigit.o ft_isdigit.c",
+  "file": "/home/taiga/practice/42/libft/ft_isdigit.c",
+  "output": "/home/taiga/practice/42/libft/ft_isdigit.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_isprint.o ft_isprint.c",
+  "file": "/home/taiga/practice/42/libft/ft_isprint.c",
+  "output": "/home/taiga/practice/42/libft/ft_isprint.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_memset.o ft_memset.c",
+  "file": "/home/taiga/practice/42/libft/ft_memset.c",
+  "output": "/home/taiga/practice/42/libft/ft_memset.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c -o ft_strlen.o ft_strlen.c",
+  "file": "/home/taiga/practice/42/libft/ft_strlen.c",
+  "output": "/home/taiga/practice/42/libft/ft_strlen.o"
+},
+
+{
+  "directory": "/home/taiga/practice/42/libft",
+  "command": "/usr/bin/cc -c /home/taiga/practice/42/libft/libft.h",
+  "file": "/home/taiga/practice/42/libft/libft.h"
+}
+]
