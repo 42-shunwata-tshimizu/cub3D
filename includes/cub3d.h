@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/06 22:14:39 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/04/06 22:16:56 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
+
 #include "validation.h"
 
-int	main(int argc,char *argv[])
-{
-    if (!validate_argv(argc, argv))
-        return 1;
 
-
-    return (0);
-}
+#endif // CUB3D_H

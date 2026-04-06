@@ -13,6 +13,8 @@
 │   ├── libft
 │   └── get_next_line
 ├── srcs/
+│   ├── validation/
+│   │   └── validate_argv.c
 │   ├── parse/
 │   │   ├── parse_map.c
 │   │   ├── parse_texture.c
