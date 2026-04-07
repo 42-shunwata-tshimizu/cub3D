@@ -6,18 +6,15 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/06 22:14:39 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/07 23:34:35 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "validation.h"
 
-int	main(int argc,char *argv[])
+int	main(int argc, char *argv[])
 {
-    if (!validate_argv(argc, argv))
-        return 1;
-
-
-    return (0);
+	if (!validate_argv(argc, argv))
+		return (1);
+	return (0);
 }
