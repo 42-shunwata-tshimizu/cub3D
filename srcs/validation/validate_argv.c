@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:48 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/07 23:34:25 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/09 21:26:31 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ bool	validate_argv(int ac, char *av[])
 {
 	if (ac != 2 || !av[1] || !av[1][0])
 	{
-		ft_putstr_fd("Usage: ./cub3D [file_path_of_the_map]\n", 2);
+		ft_putstr_fd("Error\nUsage: ./cub3D [file_path_of_the_map]\n", 2);
 		return (false);
 	}
 	if (!has_cub_extension(av[1]))
-		return (ft_putstr_fd("Invalid extension\n", 2), false);
+		return (ft_putstr_fd("Error\nInvalid extension\n", 2), false);
 	if (!is_readable(av[1]))
-		return (perror("Error"), false);
+		return (ft_putstr_fd("Error\n", 2), perror("open failed"), false);
 	return (true);
 }
