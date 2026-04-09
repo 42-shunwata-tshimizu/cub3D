@@ -52,6 +52,7 @@ RM			= rm -f
 # ===============================
 
 SRC_VALIDATION   =validation/validate_argv.c\
+					validation/validate_texture.c\
 
 
 SRC_UTILS   = \

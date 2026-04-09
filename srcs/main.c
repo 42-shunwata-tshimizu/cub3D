@@ -16,5 +16,7 @@ int	main(int argc, char *argv[])
 {
 	if (!validate_argv(argc, argv))
 		return (1);
+	if (!validate_texture(argv[1]))
+		return (1);
 	return (0);
 }
