@@ -1,0 +1,25 @@
+# Object files
+*.o
+*.a
+objs/
+
+# Executable
+cub3D
+compile_commands.json
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Editor files
+.DS_Store
+*~
+*.swp
+*.swo
+.cache
+
+# Test files
+*.log
+

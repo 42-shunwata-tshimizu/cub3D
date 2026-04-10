@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validation.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/07 23:34:35 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/04/06 22:19:05 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/04/07 23:34:59 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef VALIDATION_H
+# define VALIDATION_H
 
-int	main(int argc, char *argv[])
-{
-	if (!validate_argv(argc, argv))
-		return (1);
-	return (0);
-}
+# include "../libs/libft/libft.h"
+# include <fcntl.h>
+# include <stdbool.h>
+# include <stdio.h>
+
+bool	validate_argv(int ac, char *av[]);
+#endif // VALIDATION_H
