@@ -6,15 +6,27 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/07 23:34:35 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:05:20 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "read.h"
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
+	int		fd;
+	char	**lines;
+
 	if (!validate_argv(argc, argv))
 		return (1);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (perror("Error\n"), 1);
+	lines = read_file(fd);
+	close(fd);
+	if (!lines)
+		return (perror("Error\n"), 1);
 	return (0);
 }

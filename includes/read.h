@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   read.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/12 14:51:37 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/12 14:51:33 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef READ_H
+# define READ_H
 
-# include "read.h"
+# include "../libs/get_next_line/srcs/get_next_line.h"
+# include "../libs/libft/libft.h"
 # include "utils.h"
-# include "validation.h"
+# include <stdbool.h>
 
-#endif // CUB3D_H
+char	**read_file(int fd);
+#endif // READ_H
