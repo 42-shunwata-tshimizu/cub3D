@@ -85,6 +85,6 @@ char	**read_file(int fd)
 	lines = list_to_array(list, height);
 	if (!lines)
 		return (cleanup(&list, NULL));
-	ft_lstclear(&list, NULL);
+	ft_lstclear(&list, ft_noop);
 	return (lines);
 }
