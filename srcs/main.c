@@ -6,12 +6,13 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/12 15:05:20 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:38:09 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "read.h"
+#include "utils.h"
 #include <stdio.h>
 
 int	main(int argc, char *argv[])
@@ -27,6 +28,7 @@ int	main(int argc, char *argv[])
 	lines = read_file(fd);
 	close(fd);
 	if (!lines)
-		return (perror("Error\n"), 1);
+		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
+	free_array(lines);
 	return (0);
 }

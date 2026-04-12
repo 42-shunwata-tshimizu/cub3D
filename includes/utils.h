@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 
-void	free_array(char **arr, int size);
+void	free_array(char **arr);
+void	ft_noop(void *ptr);
 
 #endif // UTILS_H
