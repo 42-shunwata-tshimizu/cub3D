@@ -27,7 +27,6 @@ static bool	is_texture_line(const char *line)
 
 static bool	is_texture_path_valid(const char *path)
 {
-	int	fd;
 	int	len;
 
 	if (!path || !path[0])
