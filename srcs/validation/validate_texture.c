@@ -90,7 +90,7 @@ bool	validate_texture(char **lines)
 {
 	t_texture_state	state;
 
-	ft_bzero(&state);
+	ft_bzero(&state, sizeof(t_texture_state));
 	if (!validate_texture_lines(lines, &state))
 		return (false);
 	if (!state.north || !state.south || !state.west || !state.east)
