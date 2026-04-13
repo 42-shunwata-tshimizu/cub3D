@@ -14,6 +14,7 @@
 # define VALIDATION_H
 
 # include "../libs/libft/libft.h"
+# include "utils.h"
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
