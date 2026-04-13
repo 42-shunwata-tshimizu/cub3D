@@ -14,7 +14,6 @@
 # define VALIDATION_H
 
 # include "../libs/libft/libft.h"
-# include "../libs/get_next_line/srcs/get_next_line.h"
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -28,6 +27,6 @@ typedef struct s_texture_state
 }			t_texture_state;
 
 bool	validate_argv(int ac, char *av[]);
-bool	validate_texture(const char *filename);
+bool	validate_texture(char **lines);
 
 #endif // VALIDATION_H

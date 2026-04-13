@@ -6,23 +6,11 @@
 /*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 00:50:23 by shunwata          #+#    #+#             */
-/*   Updated: 2026/04/10 00:52:30 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/04/13 17:56:09 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "validation.h"
-
-bool	is_space(char c)
-{
-	return (c == ' ' || (c >= 9 && c <= 13));
-}
-
-char	*skip_space(const char *line)
-{
-	while (*line && is_space(*line))
-		line++;
-	return ((char *)line);
-}
 
 static bool	is_texture_line(const char *line)
 {
@@ -82,38 +70,29 @@ static bool	register_texture(char *line, t_texture_state *state)
 	return (true);
 }
 
-static bool	validate_texture_lines(int fd, t_texture_state *state)
+static bool	validate_texture_lines(char **lines, t_texture_state *state)
 {
-	char	*line;
 	char	*trimmed;
+	int		index;
 
-	line = get_next_line(fd);
-	while (line)
+	index = 0;
+	while (lines[index])
 	{
-		trimmed = skip_space(line);
+		trimmed = skip_space(lines[index]);
 		if (is_texture_line(trimmed) && !register_texture(trimmed, state))
-			return (free(line), false);
-		free(line);
-		line = get_next_line(fd);
+			return (false);
+		index++;
 	}
 	return (true);
 }
 
-bool	validate_texture(const char *filename)
+bool	validate_texture(char **lines)
 {
-	int				fd;
 	t_texture_state	state;
 
-	state.north = false;
-	state.south = false;
-	state.west = false;
-	state.east = false;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (perror("Error"), false);
-	if (!validate_texture_lines(fd, &state))
-		return (close(fd), false);
-	close(fd);
+	ft_bzero(&state);
+	if (!validate_texture_lines(lines, &state))
+		return (false);
 	if (!state.north || !state.south || !state.west || !state.east)
 		return (ft_putstr_fd("Error\nTexture is missing\n", 2), false);
 	return (true);

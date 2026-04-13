@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.h                                             :+:      :+:    :+:   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/13 17:54:07 by shunwata         ###   ########.fr       */
+/*   Created: 2026/04/13 17:51:36 by shunwata          #+#    #+#             */
+/*   Updated: 2026/04/13 17:59:34 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_H
-# define READ_H
+#include "utils.h"
 
-# include "../libs/get_next_line/srcs/get_next_line.h"
-# include "../libs/libft/libft.h"
-# include "utils.h"
-# include <stdbool.h>
+bool	is_space(char c)
+{
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
 
-char	**read_file(int fd);
-
-#endif // READ_H
+char	*skip_space(const char *line)
+{
+	while (*line && is_space(*line))
+		line++;
+	return ((char *)line);
+}
