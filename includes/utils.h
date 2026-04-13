@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include <stdlib.h>
+# include <stdbool.h>
 
 void	free_array(char **arr);
 void	ft_noop(void *ptr);
