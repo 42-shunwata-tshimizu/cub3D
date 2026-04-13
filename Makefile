@@ -51,15 +51,16 @@ RM			= rm -f
 #               SRC
 # ===============================
 
-SRC_VALIDATION   =validation/validate_argv.c\
+SRC_VALIDATION   = validation/validate_argv.c\
 					validation/validate_texture.c\
 
+SRC_READ   = read/read_file.c\
 
-SRC_UTILS   = \
+SRC_UTILS   = utils/free_utils.c\
 
 SRC_INPUT   = \
 
-SRC_PARSE   = \
+SRC_PARSE   = parse/parse.c\
 
 SRC_ENGINE    = \
 
@@ -69,6 +70,7 @@ SRC_MAIN    = main.c
 
 ALL_SRC = \
     $(SRC_VALIDATION) \
+    $(SRC_READ) \
     $(SRC_UTILS) \
     $(SRC_INPUT) \
     $(SRC_PARSE) \
@@ -97,7 +99,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 #   LIBRARY BUILD TARGET
 # ========================
 $(LIBFT_A):
-	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) bonus
 	@echo "$(YELLOW)🔧 Compiled LIBFT$(RESET)"
 
 $(MLX_LIB):
