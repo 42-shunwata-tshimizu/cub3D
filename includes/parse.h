@@ -14,6 +14,7 @@
 # define PARSE_H
 
 # include <stdbool.h>
+# include "validation.h"
 
 bool	parse(char **lines);
 
