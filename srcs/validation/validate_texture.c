@@ -6,7 +6,7 @@
 /*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 00:50:23 by shunwata          #+#    #+#             */
-/*   Updated: 2026/04/13 17:56:09 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/04/13 19:27:05 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ static bool	is_texture_path_valid(const char *path)
 		len++;
 	if (path[len] != '\0' && path[len] != '\n')
 		return (ft_putstr_fd("Error\nTexture path is invalid\n", 2), false);
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	if (!is_readable(path))
 		return (perror("Error"), false);
-	close(fd);
 	return (true);
 }
 
