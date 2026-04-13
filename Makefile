@@ -57,6 +57,7 @@ SRC_VALIDATION   = validation/validate_argv.c\
 SRC_READ   = read/read_file.c\
 
 SRC_UTILS   = utils/free_utils.c\
+			   utils/string_utils.c\
 
 SRC_INPUT   = \
 
