@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/12 15:38:09 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/04/12 14:51:33 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "read.h"
-#include "utils.h"
-#include <stdio.h>
+#ifndef READ_H
+# define READ_H
 
-int	main(int argc, char *argv[])
-{
-	int		fd;
-	char	**lines;
+# include "../libs/get_next_line/srcs/get_next_line.h"
+# include "../libs/libft/libft.h"
+# include "utils.h"
+# include <stdbool.h>
 
-	if (!validate_argv(argc, argv))
-		return (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (perror("Error\n"), 1);
-	lines = read_file(fd);
-	close(fd);
-	if (!lines)
-		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
-	free_array(lines);
-	return (0);
-}
+char	**read_file(int fd);
+#endif // READ_H

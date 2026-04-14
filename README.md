@@ -14,7 +14,9 @@
 │   └── get_next_line
 ├── srcs/
 │   ├── validation/
-│   │   └── validate_argv.c
+│   │   └── validate_arg.c
+│   ├── read/
+│   │   └── read_file.c
 │   ├── parse/
 │   │   ├── parse_map.c
 │   │   ├── parse_texture.c
