@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSE_H
+# define PARSE_H
 
 #include "game.h"
-# include "validation.h"
-# include "parse.h"
+# include "../libs/libft/libft.h"
+#include "../libs/get_next_line/srcs/get_next_line.h"
 
 
+t_game parse_map(char *av[]);
 
-#endif // CUB3D_H
+#endif // PARSE_H

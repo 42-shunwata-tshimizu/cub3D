@@ -10,13 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef GAME_H
+# define GAME_H
 
-#include "game.h"
-# include "validation.h"
-# include "parse.h"
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	char	**map_data;
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
+
+    int floor_color;
+    int ceiling_color;
+}			t_map;
 
 
+typedef struct s_player
+{
+	int	position_x;
+	int	position_y;
 
-#endif // CUB3D_H
+}		t_player;
+
+typedef struct s_game
+{
+    void *mlx;
+    void *mlx_win;
+    t_map *map;
+    t_player *player;
+} t_game;
+
+#endif // GAME_H
