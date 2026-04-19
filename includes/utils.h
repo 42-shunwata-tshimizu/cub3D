@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <unistd.h>
 
 void	free_array(char **arr);
 void	ft_noop(void *ptr);
