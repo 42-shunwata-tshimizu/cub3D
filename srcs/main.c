@@ -6,29 +6,63 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/12 15:38:09 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/19 20:29:29 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "read.h"
-#include "utils.h"
-#include <stdio.h>
 
-int	main(int argc, char *argv[])
+t_game	*init_game(void)
 {
-	int		fd;
-	char	**lines;
+	t_game	*game;
 
-	if (!validate_argv(argc, argv))
-		return (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (perror("Error\n"), 1);
-	lines = read_file(fd);
-	close(fd);
-	if (!lines)
-		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
-	free_array(lines);
-	return (0);
+	game = ft_calloc(1, sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game->map = ft_calloc(1, sizeof(t_map));
+	game->player = ft_calloc(1, sizeof(t_player));
+	if (!game->map || !game->player)
+		return (free_game(game), NULL);
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (free_game(game), NULL);
+	return (game);
 }
+#include <assert.h>
+
+int main(void)
+{
+    t_game *game = init_game();
+
+    assert(game != NULL);
+    assert(game->map != NULL);
+    assert(game->player != NULL);
+    assert(game->mlx != NULL);
+
+    free_game(game);
+
+    printf("OK\n");
+    return 0;
+}
+
+
+// int	main(int argc, char *argv[])
+// {
+// 	int		fd;
+// 	char	**lines;
+// 	t_game	*game;
+
+// 	if (!validate_argv(argc, argv))
+// 		return (1);
+// 	fd = open(argv[1], O_RDONLY);
+// 	if (fd < 0)
+// 		return (perror("Error\n"), 1);
+// 	lines = read_file(fd);
+// 	close(fd);
+// 	if (!lines)
+// 		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
+// 	game = init_game();
+// 	free_array(lines);
+// 	free_game(game);
+// 	return (0);
+// }
