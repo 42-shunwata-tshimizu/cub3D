@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/12 15:38:09 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/19 11:22:03 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char *argv[])
 	lines = read_file(fd);
 	close(fd);
 	if (!lines)
-		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
+		return (ft_putstr_fd("Error\ncan't read_file\n", 2), 1);
 	free_array(lines);
 	return (0);
 }
