@@ -37,7 +37,7 @@ static bool	is_texture_path_valid(const char *path)
 	if (path[len] != '\0' && path[len] != '\n')
 		return (ft_putstr_fd("Error\nTexture path is invalid\n", 2), false);
 	if (!is_readable(path))
-		return (perror("Error"), false);
+		return (perror("Error\nCannot open texture file"), false);
 	return (true);
 }
 
