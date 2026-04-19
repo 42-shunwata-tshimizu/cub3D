@@ -17,7 +17,9 @@
 # include "../libs/libft/libft.h"
 #include "../libs/get_next_line/srcs/get_next_line.h"
 
+# include <stdbool.h>
 
-t_game parse_map(char *av[]);
+
+t_game parse_map(char **lines);
 
 #endif // PARSE_H
