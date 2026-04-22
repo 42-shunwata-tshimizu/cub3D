@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.h                                             :+:      :+:    :+:   */
+/*   validate_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/13 17:54:07 by shunwata         ###   ########.fr       */
+/*   Created: 2026/04/13 19:24:45 by shunwata          #+#    #+#             */
+/*   Updated: 2026/04/13 19:25:31 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_H
-# define READ_H
+#include "utils.h"
 
-# include "libft.h"
-# include "utils.h"
-# include <stdbool.h>
+bool	is_readable(const char *filename)
+{
+	int	fd;
 
-char	**read_file(int fd);
-
-#endif // READ_H
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (false);
+	close(fd);
+	return (true);
+}

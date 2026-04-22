@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:48 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/09 21:26:31 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/13 19:25:40 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ static bool	has_cub_extension(const char *filename)
 	if (len < 5)
 		return (false);
 	return (ft_strncmp(filename + len - 4, ".cub", 4) == 0);
-}
-
-static bool	is_readable(const char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (false);
-	close(fd);
-	return (true);
 }
 
 bool	validate_argv(int ac, char *av[])

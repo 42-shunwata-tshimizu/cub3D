@@ -29,6 +29,8 @@ int	main(int argc, char *argv[])
 	close(fd);
 	if (!lines)
 		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
+	if (!parse(lines))
+		return (free_array(lines), 1);
 	free_array(lines);
 	return (0);
 }

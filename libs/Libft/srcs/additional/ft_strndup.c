@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/13 17:53:50 by shunwata         ###   ########.fr       */
+/*   Created: 2025/12/22 19:50:02 by shunwata          #+#    #+#             */
+/*   Updated: 2025/12/22 20:31:20 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "additional.h"
 
-# include "validation.h"
-# include "read.h"
-# include "parse.h"
-# include "utils.h"
+char	*ft_strndup(const char *s1, size_t n)
+{
+	size_t	size;
+	char	*result;
 
-#endif // CUB3D_H
+	size = ft_strnlen(s1, n) + 1;
+	result = (char *)malloc(size);
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, s1, size);
+	return (result);
+}
