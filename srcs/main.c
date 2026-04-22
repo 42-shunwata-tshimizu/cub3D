@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/22 22:53:57 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/22 22:58:17 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int argc, char *argv[])
 	if (!lines)
 		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
 	game = init_game();
+	if (!parse(lines))
+		return (free_array(lines), 1);
 	free_array(lines);
 	free_game(game);
 	return (0);

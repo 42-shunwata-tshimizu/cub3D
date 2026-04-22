@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/19 20:25:29 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/22 22:58:02 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 
 # include "game.h"
 # include <stdlib.h>
+# include <stdbool.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 void	free_array(char **arr);
 void	free_game(t_game *game);
 void	ft_noop(void *ptr);
+
+bool	is_space(char c);
+char	*skip_space(const char *line);
+
+bool	is_readable(const char *filename);
 
 #endif // UTILS_H

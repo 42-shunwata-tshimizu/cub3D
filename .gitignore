@@ -23,3 +23,9 @@ compile_commands.json
 # Test files
 *.log
 
+# shunwata dev
+SUBJECT.md
+CODING_GUIDELINES.md
+.codex
+AGENTS.md
+shell.nix
