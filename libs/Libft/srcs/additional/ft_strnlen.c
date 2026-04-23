@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.h                                             :+:      :+:    :+:   */
+/*   ft_strnlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/13 17:54:07 by shunwata         ###   ########.fr       */
+/*   Created: 2025/12/22 19:45:33 by shunwata          #+#    #+#             */
+/*   Updated: 2025/12/22 20:31:32 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_H
-# define READ_H
+#include "additional.h"
 
-# include "libft.h"
-# include "utils.h"
-# include <stdbool.h>
+size_t	ft_strnlen(const char *s, size_t n)
+{
+	const char	*h = s;
 
-char	**read_file(int fd);
-
-#endif // READ_H
+	while (n && *s)
+		(void)(n--, s++);
+	return (s - h);
+}

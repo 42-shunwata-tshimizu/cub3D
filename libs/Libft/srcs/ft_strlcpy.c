@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/22 22:55:08 by tshimizu         ###   ########.fr       */
+/*   Created: 2025/04/28 19:27:12 by shunwata          #+#    #+#             */
+/*   Updated: 2025/06/04 20:51:01 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
-void	free_array(char **arr)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	i;
+	size_t	len;
 
-	if (!arr)
-		return ;
 	i = 0;
-	while (arr[i])
+	len = ft_strlen(src);
+	if (dstsize == 0)
+		return (len);
+	while (src[i] && i < dstsize - 1)
 	{
-		free(arr[i]);
+		dst[i] = src[i];
 		i++;
 	}
-	free(arr);
-}
-
-void	ft_noop(void *ptr)
-{
-	(void)ptr;
-}
-
-void	free_game(t_game *game)
-{
-	if (!game)
-		return ;
-	free(game->player);
-	free(game->map);
-	free(game);
+	dst[i] = '\0';
+	return (len);
 }

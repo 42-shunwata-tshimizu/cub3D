@@ -29,19 +29,19 @@ SRC_DIR		= srcs
 OBJ_DIR		= objs
 INC_DIR		= includes
 
-LIBFT_DIR	= libs/libft
-LIBFT_A	= $(LIBFT_DIR)/libft.a
-
-GNL_DIR = libs/get_next_line/srcs
-GNL_SRC = get_next_line.c get_next_line_utils.c
-GNL_SRCS = $(addprefix $(GNL_DIR)/, $(GNL_SRC))
-GNL_OBJS = $(GNL_SRCS:.c=.o)
+LIBFT_DIR		= libs/Libft
+LIBFT_A			= $(LIBFT_DIR)/libft.a
+L_INC_DIR		= $(LIBFT_DIR)/includes
+L_SRC_DIR		= $(LIBFT_DIR)/srcs
+PRINTF_DIR		= $(L_SRC_DIR)/ft_printf
+GNL_DIR			= $(L_SRC_DIR)/get_next_line
+ADDITIONAL_DIR	= $(L_SRC_DIR)/additional
 
 MLX_DIR		= libs/minilibx-linux
 MLX_LIB	= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11
 
-INCFLAG		= -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I$(GNL_DIR)
+INCFLAG		= -I$(INC_DIR) -I$(L_INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -I$(PRINTF_DIR) -I$(ADDITIONAL_DIR)
 CFLAGS		= -Wall -Wextra -Werror $(INCFLAG)
 
 RM			= rm -f
@@ -52,14 +52,17 @@ RM			= rm -f
 # ===============================
 
 SRC_VALIDATION   = validation/validate_argv.c\
+					validation/validate_texture.c\
 
 SRC_READ   = read/read_file.c\
 
 SRC_UTILS   = utils/free_utils.c\
+			   utils/string_utils.c\
+			   utils/validate_utils.c\
 
 SRC_INPUT   = \
 
-SRC_PARSE   = \
+SRC_PARSE   = parse/parse.c\
 
 SRC_ENGINE    = \
 
@@ -85,8 +88,8 @@ OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # ========================
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJS) $(MLX_LIB) $(GNL_OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT_A) $(MLX_FLAGS) -o $@
+$(NAME): $(LIBFT_A) $(OBJS) $(MLX_LIB) 
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_FLAGS) -o $@
 	@echo "$(GREEN)✅ Compiled: $(NAME)$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -98,16 +101,16 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 #   LIBRARY BUILD TARGET
 # ========================
 $(LIBFT_A):
-	@$(MAKE) -C $(LIBFT_DIR) bonus
+	@$(MAKE) -C $(LIBFT_DIR)
 	@echo "$(YELLOW)🔧 Compiled LIBFT$(RESET)"
 
 $(MLX_LIB):
 	@$(MAKE) -C $(MLX_DIR)
 	@echo "$(YELLOW)🔧 Compiled MLX$(RESET)"
 
-$(GNL_DIR)/%.o: $(GNL_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(YELLOW)🔧 Compiled GNL: $<$(RESET)"
+# $(GNL_DIR)/%.o: $(GNL_DIR)/%.c
+# 	$(CC) $(CFLAGS) -c $< -o $@
+# 	@echo "$(YELLOW)🔧 Compiled GNL: $<$(RESET)"
 
 # ===============================
 #       SANITIZER / DEBUG
@@ -129,7 +132,7 @@ valgrind: re
 #       CLEANING
 # ========================
 clean:
-	@$(RM) $(OBJS) $(GNL_OBJS)
+	@$(RM) $(OBJS) 
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(MLX_DIR) clean
 	@echo "🧹 Cleaned object files.$(RESET)"
