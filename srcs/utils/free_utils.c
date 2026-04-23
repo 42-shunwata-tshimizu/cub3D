@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/12 15:38:13 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/22 22:55:08 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,13 @@ void	free_array(char **arr)
 void	ft_noop(void *ptr)
 {
 	(void)ptr;
+}
+
+void	free_game(t_game *game)
+{
+	if (!game)
+		return ;
+	free(game->player);
+	free(game->map);
+	free(game);
 }
