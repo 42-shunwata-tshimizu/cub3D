@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/04/06 22:15:07 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/04/25 17:57:08 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,11 @@ SRC_UTILS   = utils/free_utils.c\
 SRC_INPUT   = \
 
 SRC_PARSE   = parse/parse.c\
+			  parse/parse_map.c\
+			  parse/validate_map.c\
+			  parse/is_map_closed.c\
+			  parse/find_player.c\
+			  parse/calc_map_size.c\
 
 SRC_ENGINE    = \
 
@@ -88,7 +93,7 @@ OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # ========================
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJS) $(MLX_LIB) 
+$(NAME): $(LIBFT_A) $(OBJS) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_FLAGS) -o $@
 	@echo "$(GREEN)✅ Compiled: $(NAME)$(RESET)"
 
@@ -108,10 +113,6 @@ $(MLX_LIB):
 	@$(MAKE) -C $(MLX_DIR)
 	@echo "$(YELLOW)🔧 Compiled MLX$(RESET)"
 
-# $(GNL_DIR)/%.o: $(GNL_DIR)/%.c
-# 	$(CC) $(CFLAGS) -c $< -o $@
-# 	@echo "$(YELLOW)🔧 Compiled GNL: $<$(RESET)"
-
 # ===============================
 #       SANITIZER / DEBUG
 # ===============================
@@ -127,12 +128,17 @@ debug: re
 valgrind: re
 	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=readline.supp ./$(NAME)
 
+# ========================
+#    TEST / RUN HELPERS
+# ========================
+run: all
+	./$(NAME) ./resource/settings/test.cub
 
 # ========================
 #       CLEANING
 # ========================
 clean:
-	@$(RM) $(OBJS) 
+	@$(RM) $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(MLX_DIR) clean
 	@echo "🧹 Cleaned object files.$(RESET)"

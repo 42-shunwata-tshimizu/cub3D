@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/22 22:55:08 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 18:16:27 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,18 @@ void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
-	free(game->player);
-	free(game->map);
+	if (game->map)
+	{
+		if (game->map->map_data)
+			free_array(game->map->map_data);
+		free(game->map);
+	}
+	if (game->player)
+		free(game->player);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	free(game);
 }

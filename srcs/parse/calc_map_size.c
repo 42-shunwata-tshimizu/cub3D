@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   calc_map_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 13:19:11 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/04/25 17:27:20 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/04/25 18:39:54 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "parse.h"
 
-# include "../libs/minilibx-linux/mlx.h"
-# include "game.h"
-# include "libft.h"
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdlib.h>
-# include <unistd.h>
+void	calc_map_size(t_game *game)
+{
+	int		width;
+	int		height;
+	int		len;
 
-void	free_array(char **arr);
-void	free_game(t_game *game);
-void	ft_noop(void *ptr);
-
-bool	is_space(char c);
-char	*skip_space(const char *line);
-
-bool	is_readable(const char *filename);
-
-#endif // UTILS_H
+	height = 0;
+	width = 0;
+	while (game->map->map_data[height])
+	{
+		len = (int)ft_strlen(game->map->map_data[height]);
+		if (width < len)
+			width = len;
+		height++;
+	}
+	game->map->height = height;
+	game->map->width = width;
+}
