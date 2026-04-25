@@ -11,10 +11,15 @@
 /* ************************************************************************** */
 
 #include "parse.h"
+#include "game.h"
 
-bool	parse(char **lines)
+bool	parse(char **lines,t_game *game)
 {
 	if (!validate_texture(lines))
 		return (false);
-	return (true);
+
+    if (!parse_map(lines,game))
+        return false;
+
+    return (true);
 }

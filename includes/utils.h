@@ -13,7 +13,7 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "../libs/libft/libft.h"
+# include "libft.h"
 # include "game.h"
 # include <fcntl.h>
 # include <stdbool.h>

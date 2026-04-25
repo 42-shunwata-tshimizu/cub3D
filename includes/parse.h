@@ -14,8 +14,7 @@
 # define PARSE_H
 # define NOT_FOUND -1
 
-# include "../libs/get_next_line/srcs/get_next_line.h"
-# include "../libs/libft/libft.h"
+# include "libft.h"
 # include "game.h"
 # include "utils.h"
 # include "validation.h"
@@ -27,6 +26,6 @@ bool	validate_map(char **lines, char **map, int start, int end);
 bool	find_player(char **map, t_player *player);
 t_game	*parse_map(char **lines, t_game *game);
 
-bool	parse(char **lines);
+bool	parse(char **lines,t_game *game);
 
 #endif // PARSE_H

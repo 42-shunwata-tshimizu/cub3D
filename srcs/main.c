@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "utils.h"
 
-t_game	*init_game(void)
+static t_game	*init_game_struct(void)
 {
 	t_game	*game;
 
@@ -43,10 +44,12 @@ int	main(int argc, char *argv[])
 	lines = read_file(fd);
 	close(fd);
 	if (!lines)
-		return (ft_putstr_fd("Error\ncan't read_file", 2), 1);
-	game = init_game();
-	if (!parse(lines))
-		return (free_array(lines), 1);
+		return (ft_putstr_fd("Error\ncan't read_file\n", 2), 1);
+	game = init_game_struct();
+    if (!game)
+		return (free_array(lines),ft_putstr_fd("Error\nFaild to init_game\n", 2), 1);
+	if (!parse(lines,game))
+		return (free_array(lines), free_game(game),1);
 	free_array(lines);
 	free_game(game);
 	return (0);

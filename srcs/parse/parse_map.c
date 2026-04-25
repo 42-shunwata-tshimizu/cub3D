@@ -88,7 +88,7 @@ t_game	*parse_map(char **lines, t_game *game)
 	map = extract_map(lines, start, end);
 	if (!map)
 		return (NULL);
-	if (!validate_map)
+	if (!validate_map(lines,map,start,end))
 		return (free(map), NULL);
 	game->map->map_data = map;
 	return (game);
