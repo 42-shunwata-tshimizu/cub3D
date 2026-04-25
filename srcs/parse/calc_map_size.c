@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:27:20 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 18:26:10 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 18:38:40 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	calc_map_size(t_game *game)
 	{
 		len = (int)ft_strlen(game->map->map_data[height]);
 		if (width < len)
-			width = (int)ft_strlen(current_line);
+			width = len;
 		height++;
 	}
 	game->map->height = height;
