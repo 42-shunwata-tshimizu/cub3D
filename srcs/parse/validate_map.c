@@ -6,13 +6,22 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/19 20:07:56 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 16:49:07 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static bool	has_empty_after(char **lines, int end)
+static bool	check_cell(char c, int *p)
+{
+	if (ft_strchr(MAP_CHAR_PLAYER, c))
+		(*p)++;
+	else if (c != MAP_CHAR_FLOOR && c != MAP_CHAR_WALL && c != MAP_CHAR_EMPTY)
+		return (false);
+	return (true);
+}
+
+static bool	validate_empty_tail(char **lines, int end)
 {
 	int	i;
 
@@ -20,22 +29,13 @@ static bool	has_empty_after(char **lines, int end)
 	while (lines[i])
 	{
 		if (lines[i][0] != '\0')
-			return (true);
+			return (false);
 		i++;
 	}
-	return (false);
-}
-
-static bool	check_cell(char c, int *p)
-{
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		(*p)++;
-	else if (c != '0' && c != '1' && c != ' ')
-		return (false);
 	return (true);
 }
 
-static bool	check_elements(char **map)
+static bool	validate_elements(char **map)
 {
 	int	y;
 	int	x;
@@ -46,7 +46,7 @@ static bool	check_elements(char **map)
 	while (map[y])
 	{
 		x = 0;
-		while (map[x])
+		while (map[y][x])
 		{
 			if (!check_cell(map[y][x], &p))
 				return (false);
@@ -61,9 +61,7 @@ bool	validate_map(char **lines, char **map, int start, int end)
 {
 	char	**map_copy;
 
-	if (!has_empty_after(lines, end))
-		return (ft_putstr_fd("Error\nInvalid map tail\n", 2), false);
-	if (!check_elements(map))
+	if (!validate_elements(map))
 		return (ft_putstr_fd("Error\nInvalid map elements\n", 2), false);
 	map_copy = extract_map(lines, start, end);
 	if (!map_copy)
@@ -72,5 +70,7 @@ bool	validate_map(char **lines, char **map, int start, int end)
 		return (free_array(map_copy), ft_putstr_fd("Error\nInvalid map leaks\n",
 				2), false);
 	free_array(map_copy);
+	if (!validate_empty_tail(lines, end))
+		return (ft_putstr_fd("Error\nInvalid map tail\n", 2), false);
 	return (true);
 }

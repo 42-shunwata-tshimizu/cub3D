@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/19 19:26:29 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 16:48:44 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	is_map_line(char *line)
 		return (false);
 	while (line[i])
 	{
-		if (!ft_strchr("01NSEW ", line[i]))
+		if (!ft_strchr(MAP_VALID_CHARS, line[i]))
 			return (false);
 		i++;
 	}
@@ -47,10 +47,11 @@ static int	find_map_end(char **lines, int start)
 	int	i;
 
 	i = start;
-	while (lines[i] && is_map_line(lines[i]))
+	while (lines[i] && lines[i][0] != '\0')
 		i++;
 	return (i);
 }
+
 char	**extract_map(char **lines, int start, int end)
 {
 	int		i;
@@ -63,7 +64,7 @@ char	**extract_map(char **lines, int start, int end)
 	while (start < end)
 	{
 		res[i++] = ft_strdup(lines[start++]);
-		if (!res[i])
+		if (!res[i - 1])
 		{
 			while (i > 0)
 				free(res[--i]);
@@ -88,8 +89,8 @@ t_game	*parse_map(char **lines, t_game *game)
 	map = extract_map(lines, start, end);
 	if (!map)
 		return (NULL);
-	if (!validate_map(lines,map,start,end))
-		return (free(map), NULL);
+	if (!validate_map(lines, map, start, end))
+		return (free_array(map), NULL);
 	game->map->map_data = map;
 	return (game);
 }

@@ -6,23 +6,23 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 16:54:48 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/19 20:06:14 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 16:47:52 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static bool	flood_fill_leaks(char **map_copy, int x, int y)
+static bool	has_leak(char **map, int x, int y)
 {
-	if (x < 0 || y < 0 || !map_copy[y] || x >= (int)ft_strlen(map_copy[y]))
-		return true;
-	if (map_copy[y][x]==' ')
-		return true;
-	if (map_copy[y][x]=='1'||map_copy[y][x]=='V')
-		return false;
-	map_copy[y][x] = 'V';
-	return (flood_fill(map_copy, x + 1, y) || flood_fill(map_copy, x - 1, y)
-		|| flood_fill(map_copy, x, y + 1) || flood_fill(map_copy, x, y - 1));
+	if (x < 0 || y < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
+		return (true);
+	if (map[y][x] == ' ')
+		return (true);
+	if (map[y][x] == '1' || map[y][x] == 'V')
+		return (false);
+	map[y][x] = 'V';
+	return (has_leak(map, x + 1, y) || has_leak(map, x - 1, y) || has_leak(map,
+			x, y + 1) || has_leak(map, x, y - 1));
 }
 
 bool	is_map_closed(char **map_copy)
@@ -32,7 +32,7 @@ bool	is_map_closed(char **map_copy)
 	tmp_player.position_x = 0;
 	tmp_player.position_y = 0;
 	find_player(map_copy, &tmp_player);
-	if (flood_fill_leaks(map_copy,tmp_player.position_x,tmp_player.position_x))
+	if (!has_leak(map_copy, tmp_player.position_x, tmp_player.position_y))
 		return (false);
-	return true;
+	return (true);
 }

@@ -6,15 +6,16 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/23 22:50:21 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 13:19:11 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "libft.h"
+# include "../libs/minilibx-linux/mlx.h"
 # include "game.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdlib.h>

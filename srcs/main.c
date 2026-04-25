@@ -6,12 +6,11 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/23 22:50:42 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 16:47:41 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "utils.h"
 
 static t_game	*init_game_struct(void)
 {
@@ -46,10 +45,11 @@ int	main(int argc, char *argv[])
 	if (!lines)
 		return (ft_putstr_fd("Error\ncan't read_file\n", 2), 1);
 	game = init_game_struct();
-    if (!game)
-		return (free_array(lines),ft_putstr_fd("Error\nFaild to init_game\n", 2), 1);
-	if (!parse(lines,game))
-		return (free_array(lines), free_game(game),1);
+	if (!game)
+		return (free_array(lines), ft_putstr_fd("Error\nFaild to init_game\n",
+				2), 1);
+	if (!parse(lines, game))
+		return (free_array(lines), free_game(game), 1);
 	free_array(lines);
 	free_game(game);
 	return (0);
