@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:47:47 by shunwata          #+#    #+#             */
-/*   Updated: 2026/04/25 11:36:36 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 17:56:00 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MAP_CHAR_PLAYER "NSEW"
 # define MAP_VALID_CHARS "01NSEW "
 
+void	calc_map_size(t_game *game);
 char	**extract_map(char **lines, int start, int end);
 bool	is_map_closed(char **map_copy);
 bool	validate_map(char **lines, char **map, int start, int end);

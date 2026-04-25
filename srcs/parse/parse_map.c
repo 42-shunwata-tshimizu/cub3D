@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 16:48:44 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 18:03:58 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ t_game	*parse_map(char **lines, t_game *game)
 	if (!validate_map(lines, map, start, end))
 		return (free_array(map), NULL);
 	game->map->map_data = map;
+	calc_map_size(game);
 	return (game);
 }
