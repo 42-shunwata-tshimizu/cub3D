@@ -53,6 +53,7 @@ RM			= rm -f
 
 SRC_VALIDATION   = validation/validate_argv.c\
 					validation/validate_texture.c\
+					validation/validate_color.c\
 
 SRC_READ   = read/read_file.c\
 
@@ -63,6 +64,8 @@ SRC_UTILS   = utils/free_utils.c\
 SRC_INPUT   = \
 
 SRC_PARSE   = parse/parse.c\
+			  parse/parse_texture.c\
+			  parse/parse_color.c\
 			  parse/parse_map.c\
 			  parse/validate_map.c\
 			  parse/is_map_closed.c\
