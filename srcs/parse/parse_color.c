@@ -38,7 +38,7 @@ static bool	parse_color_line(char *line, t_map *map)
 	if (line[0] == 'F' && is_space(line[1]))
 	{
 		map->floor_color = get_color_value(line);
-		return (map->floor_color != -1);
+		return (map->floor_color != NOT_FOUND);
 	}
 	if (line[0] == 'C' && is_space(line[1]))
 	{
