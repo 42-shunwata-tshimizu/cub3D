@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/22 22:54:49 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/04/25 12:02:31 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_player
 {
 	int			position_x;
 	int			position_y;
-
+	double		dir_x;
+	double		dir_y;
 }				t_player;
 
 typedef struct s_game
