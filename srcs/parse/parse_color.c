@@ -43,7 +43,7 @@ static bool	parse_color_line(char *line, t_map *map)
 	if (line[0] == 'C' && is_space(line[1]))
 	{
 		map->ceiling_color = get_color_value(line);
-		return (map->ceiling_color != -1);
+		return (map->ceiling_color != NOT_FOUND);
 	}
 	return (true);
 }
