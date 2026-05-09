@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 16:49:07 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/09 14:37:23 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	validate_map(char **lines, char **map, int start, int end)
 	map_copy = extract_map(lines, start, end);
 	if (!map_copy)
 		return (false);
-	if (is_map_closed(map_copy))
+	if (has_map_leak(map_copy))
 		return (free_array(map_copy), ft_putstr_fd("Error\nInvalid map leaks\n",
 				2), false);
 	free_array(map_copy);

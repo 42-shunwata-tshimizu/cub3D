@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 16:54:48 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 16:47:52 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/05/09 14:37:38 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/05/09 14:37:41 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ static bool	has_leak(char **map, int x, int y)
 			x, y + 1) || has_leak(map, x, y - 1));
 }
 
-bool	is_map_closed(char **map_copy)
+bool	has_map_leak(char **map_copy)
 {
 	t_player	tmp_player;
 
 	tmp_player.position_x = 0;
 	tmp_player.position_y = 0;
 	find_player(map_copy, &tmp_player);
-	if (!has_leak(map_copy, tmp_player.position_x, tmp_player.position_y))
-		return (false);
-	return (true);
+	return (has_leak(map_copy, tmp_player.position_x, tmp_player.position_y));
 }

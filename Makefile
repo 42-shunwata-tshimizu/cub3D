@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/04/25 17:57:08 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/05/09 14:37:54 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ SRC_INPUT   = \
 SRC_PARSE   = parse/parse.c\
 			  parse/parse_map.c\
 			  parse/validate_map.c\
-			  parse/is_map_closed.c\
+			  parse/has_map_leak.c\
 			  parse/find_player.c\
 			  parse/calc_map_size.c\
 

@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:47:47 by shunwata          #+#    #+#             */
-/*   Updated: 2026/04/25 17:56:00 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/09 14:36:48 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 void	calc_map_size(t_game *game);
 char	**extract_map(char **lines, int start, int end);
-bool	is_map_closed(char **map_copy);
+bool	has_map_leak(char **map_copy);
 bool	validate_map(char **lines, char **map, int start, int end);
 bool	find_player(char **map, t_player *player);
 t_game	*parse_map(char **lines, t_game *game);
