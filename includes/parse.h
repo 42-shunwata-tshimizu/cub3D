@@ -6,13 +6,12 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:47:47 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/09 14:36:48 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/16 18:17:30 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
-# define NOT_FOUND -1
 
 # include "game.h"
 # include "libft.h"

@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 16:47:41 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/16 19:10:23 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static t_game	*init_game_struct(void)
 		return (NULL);
 	game->map = ft_calloc(1, sizeof(t_map));
 	game->player = ft_calloc(1, sizeof(t_player));
-	if (!game->map || !game->player)
+	game->keys = ft_calloc(1, sizeof(t_keys));
+	if (!game->map || !game->player || !game->keys)
 		return (free_game(game), NULL);
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -50,6 +51,9 @@ int	main(int argc, char *argv[])
 				2), 1);
 	if (!parse(lines, game))
 		return (free_array(lines), free_game(game), 1);
+	mlx_hook(game->mlx_win, KEY_PRESS, KEY_PRESS_MASK, key_press, game);
+	mlx_hook(game->mlx_win, KEY_RELEASE, KEY_RELEASE_MASK, key_release, game);
+	mlx_loop(game->mlx);
 	free_array(lines);
 	free_game(game);
 	return (0);
