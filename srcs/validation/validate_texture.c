@@ -36,6 +36,8 @@ static bool	is_texture_path_valid(const char *path)
 		len++;
 	if (path[len] != '\0' && path[len] != '\n')
 		return (ft_putstr_fd("Error\nTexture path is invalid\n", 2), false);
+	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
+		return (ft_putstr_fd("Error\nTexture must be xpm file\n", 2), false);
 	if (!is_readable(path))
 		return (perror("Error\nCannot open texture file"), false);
 	return (true);

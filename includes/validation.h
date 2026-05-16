@@ -29,5 +29,6 @@ typedef struct s_texture_state
 
 bool	validate_argv(int ac, char *av[]);
 bool	validate_texture(char **lines);
+bool	validate_color(char **lines);
 
 #endif // VALIDATION_H

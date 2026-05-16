@@ -32,6 +32,8 @@ bool	has_map_leak(char **map_copy);
 bool	validate_map(char **lines, char **map, int start, int end);
 bool	find_player(char **map, t_player *player);
 t_game	*parse_map(char **lines, t_game *game);
+bool	parse_texture(char **lines, t_map *map);
+bool	parse_color(char **lines, t_map *map);
 
 bool	parse(char **lines, t_game *game);
 

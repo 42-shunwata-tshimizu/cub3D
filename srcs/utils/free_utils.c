@@ -40,6 +40,10 @@ void	free_game(t_game *game)
 	{
 		if (game->map->map_data)
 			free_array(game->map->map_data);
+		free(game->map->north_texture);
+		free(game->map->south_texture);
+		free(game->map->west_texture);
+		free(game->map->east_texture);
 		free(game->map);
 	}
 	if (game->player)

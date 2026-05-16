@@ -17,6 +17,12 @@ bool	parse(char **lines, t_game *game)
 {
 	if (!validate_texture(lines))
 		return (false);
+	if (!validate_color(lines))
+		return (false);
+	if (!parse_texture(lines, game->map))
+		return (false);
+	if (!parse_color(lines, game->map))
+		return (false);
 	if (!parse_map(lines, game))
 		return (false);
 	return (true);
