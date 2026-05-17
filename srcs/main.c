@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:14:36 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 12:26:46 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:31:14 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ static t_game	*init_game_struct(void)
 		return (free_game(game), NULL);
 	game->mlx = mlx_init();
 	if (!game->mlx)
+		return (free_game(game), NULL);
+	game->mlx_win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!game->mlx_win)
 		return (free_game(game), NULL);
 	return (game);
 }
@@ -54,6 +57,8 @@ static void	register_hooks(t_game *game)
 {
 	mlx_hook(game->mlx_win, KEY_PRESS, KEY_PRESS_MASK, key_press, game);
 	mlx_hook(game->mlx_win, KEY_RELEASE, KEY_RELEASE_MASK, key_release, game);
+	mlx_hook(game->mlx_win, CLOSE_WINDOW, CLOSE_WINDOW_MASK, close_window,
+		game);
 }
 
 static void	run_game(t_game *game)
@@ -70,6 +75,5 @@ int	main(int argc, char *argv[])
 	if (!game)
 		return (1);
 	run_game(game);
-	free_game(game);
 	return (0);
 }

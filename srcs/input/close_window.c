@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.h                                            :+:      :+:    :+:   */
+/*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 11:16:49 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 14:29:16 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/05/17 14:28:28 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/05/17 14:28:45 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_H
-# define INPUT_H
+#include "input.h"
 
-# include "game.h"
-# include "utils.h"
-
-int	key_press(t_key_codes keycode, t_game *game);
-
-int	key_release(t_key_codes keycode, t_game *game);
-
-int	close_window(t_game *game);
-
-#endif // INPUT_H
+int	close_window(t_game *game)
+{
+	free_game(game);
+	exit(0);
+	return (0);
+}
