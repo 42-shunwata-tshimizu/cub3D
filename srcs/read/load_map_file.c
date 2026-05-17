@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.h                                             :+:      :+:    :+:   */
+/*   load_map_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 12:27:41 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/05/17 12:16:31 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/05/17 12:16:55 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_H
-# define READ_H
+#include "read.h"
 
-# include "libft.h"
-# include "utils.h"
-# include <stdbool.h>
-# include <stdio.h>
+char	**load_map_file(char *path)
+{
+	int		fd;
+	char	**lines;
 
-char	**read_file(int fd);
-
-char	**load_map_file(char *path);
-
-#endif // READ_H
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (perror("Error"), NULL);
+	lines = read_file(fd);
+	close(fd);
+	if (!lines)
+		return (ft_putstr_fd("Error\ncan't read_file\n", 2), NULL);
+	return (lines);
+}
