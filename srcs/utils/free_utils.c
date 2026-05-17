@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/16 18:27:30 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:24:34 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	free_game(t_game *game)
 		free(game->player);
 	if (game->keys)
 		free(game->keys);
+	if (game ->mlx_win)
+		mlx_destroy_window(game->mlx, game->mlx_win);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);

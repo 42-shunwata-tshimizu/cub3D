@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/05/17 12:26:21 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/05/17 14:30:28 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC_UTILS   = utils/free_utils.c\
 			   utils/validate_utils.c\
 
 SRC_INPUT   = input/key.c\
+			  input/close_window.c\
 
 SRC_PARSE   = parse/parse.c\
 			  parse/parse_texture.c\

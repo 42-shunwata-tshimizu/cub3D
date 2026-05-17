@@ -6,13 +6,15 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 11:27:29 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:26:26 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 # define NOT_FOUND -1
+# define WIDTH 1280
+# define HEIGHT 720
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -21,6 +23,7 @@ typedef enum e_key_mask
 {
 	KEY_PRESS_MASK = (1L << 0),
 	KEY_RELEASE_MASK = (1L << 1),
+	CLOSE_WINDOW_MASK = 0
 }				t_key_mask;
 
 typedef enum e_key_event
