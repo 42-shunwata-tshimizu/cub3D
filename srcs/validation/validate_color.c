@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 11:54:32 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/07 11:54:42 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/05/17 11:14:24 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "validation.h"
-
-typedef struct s_color_state
-{
-	bool	floor;
-	bool	ceiling;
-}			t_color_state;
 
 static bool	validate_rgb_value(char **line)
 {

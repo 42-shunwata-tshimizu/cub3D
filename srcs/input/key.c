@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 11:16:32 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/16 19:44:38 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/17 11:10:01 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static bool	*get_key_state(t_keys *keys, t_key_codes keycode)
 		return (&keys->key_esc);
 	return (NULL);
 }
+
 static void	set_key_state(t_game *game, t_key_codes keycode, bool value)
 {
 	bool	*state;

@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:19:05 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/10 00:51:41 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/05/17 11:14:18 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_texture_state
 	bool	west;
 	bool	east;
 }			t_texture_state;
+
+typedef struct s_color_state
+{
+	bool	floor;
+	bool	ceiling;
+}			t_color_state;
 
 bool	validate_argv(int ac, char *av[]);
 bool	validate_texture(char **lines);

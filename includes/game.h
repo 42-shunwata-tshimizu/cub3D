@@ -6,21 +6,29 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/16 19:44:51 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/17 11:27:29 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 # define NOT_FOUND -1
-# define KEY_PRESS 2
-# define KEY_RELEASE 3
-# define CLOSE_WINDOW 17
-# define KEY_PRESS_MASK (1L << 0)
-# define KEY_RELEASE_MASK (1L << 1)
 
 # include <stdbool.h>
 # include <stdlib.h>
+
+typedef enum e_key_mask
+{
+	KEY_PRESS_MASK = (1L << 0),
+	KEY_RELEASE_MASK = (1L << 1),
+}				t_key_mask;
+
+typedef enum e_key_event
+{
+	KEY_PRESS = 2,
+	KEY_RELEASE = 3,
+	CLOSE_WINDOW = 17,
+}				t_key_event;
 
 typedef enum e_key_codes
 {
