@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/05/09 14:37:54 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/05/16 19:40:17 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRC_UTILS   = utils/free_utils.c\
 			   utils/string_utils.c\
 			   utils/validate_utils.c\
 
-SRC_INPUT   = \
+SRC_INPUT   = input/key.c\
 
 SRC_PARSE   = parse/parse.c\
 			  parse/parse_texture.c\
@@ -122,14 +122,14 @@ $(MLX_LIB):
 asan: CFLAGS += -g -fsanitize=address
 asan: re
 	@echo "$(GREEN)🚀 AddressSanitizer Enabled$(RESET)"
-	./$(NAME)
+	./$(NAME) ./resource/settings/test.cub
 
 debug: CFLAGS += -g -DDEBUG
 debug: re
 	@echo "$(GREEN)🚀 Debug build ready$(RESET)"
 
 valgrind: re
-	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=readline.supp ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=readline.supp ./$(NAME)./resource/settings/test.cub
 
 # ========================
 #    TEST / RUN HELPERS

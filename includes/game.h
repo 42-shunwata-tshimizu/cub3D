@@ -6,12 +6,51 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/04/25 12:02:31 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/17 11:27:29 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
+# define NOT_FOUND -1
+
+# include <stdbool.h>
+# include <stdlib.h>
+
+typedef enum e_key_mask
+{
+	KEY_PRESS_MASK = (1L << 0),
+	KEY_RELEASE_MASK = (1L << 1),
+}				t_key_mask;
+
+typedef enum e_key_event
+{
+	KEY_PRESS = 2,
+	KEY_RELEASE = 3,
+	CLOSE_WINDOW = 17,
+}				t_key_event;
+
+typedef enum e_key_codes
+{
+	KEY_W = 119,
+	KEY_A = 97,
+	KEY_S = 115,
+	KEY_D = 100,
+	KEY_LEFT = 65361,
+	KEY_RIGHT = 65363,
+	KEY_ESC = 65307,
+}				t_key_codes;
+
+typedef struct s_keys
+{
+	bool		key_w;
+	bool		key_a;
+	bool		key_s;
+	bool		key_d;
+	bool		key_left;
+	bool		key_right;
+	bool		key_esc;
+}				t_keys;
 
 typedef struct s_map
 {
@@ -41,6 +80,7 @@ typedef struct s_game
 	void		*mlx_win;
 	t_map		*map;
 	t_player	*player;
+	t_keys		*keys;
 }				t_game;
 
 #endif // GAME_H
