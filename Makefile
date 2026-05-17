@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/05/16 19:40:17 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/05/17 12:26:21 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC_VALIDATION   = validation/validate_argv.c\
 					validation/validate_color.c\
 
 SRC_READ   = read/read_file.c\
+			 read/load_map_file.c\
 
 SRC_UTILS   = utils/free_utils.c\
 			   utils/string_utils.c\
