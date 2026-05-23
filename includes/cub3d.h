@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../libs/minilibx-linux/mlx.h"
+# include "engine.h"
 # include "game.h"
 # include "input.h"
 # include "parse.h"

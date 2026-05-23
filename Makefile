@@ -74,7 +74,7 @@ SRC_PARSE   = parse/parse.c\
 			  parse/find_player.c\
 			  parse/calc_map_size.c\
 
-SRC_ENGINE    = \
+SRC_ENGINE    = engine/raycast.c\
 
 SRC_RENDER = \
 
