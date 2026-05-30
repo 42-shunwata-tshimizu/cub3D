@@ -26,6 +26,7 @@ typedef enum e_wall_face
 
 typedef struct s_ray
 {
+	t_coordinate	player;
 	double		camera_x;
 	t_vec2		ray_dir;
 	int			map_x;

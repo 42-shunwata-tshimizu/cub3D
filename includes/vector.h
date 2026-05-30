@@ -19,6 +19,12 @@ typedef struct s_vec2
 	double	y;
 }				t_vec2;
 
+typedef struct s_coordinate
+{
+	double	x;
+	double	y;
+}				t_coordinate;
+
 t_vec2			vec2(double x, double y);
 t_vec2			vec2_add(t_vec2 a, t_vec2 b);
 t_vec2			vec2_scale(t_vec2 vec, double scalar);
