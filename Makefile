@@ -75,6 +75,7 @@ SRC_PARSE   = parse/parse.c\
 			  parse/calc_map_size.c\
 
 SRC_ENGINE    = engine/raycast.c\
+				engine/vector.c\
 
 SRC_RENDER = \
 

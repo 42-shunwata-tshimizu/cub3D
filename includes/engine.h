@@ -14,6 +14,7 @@
 # define ENGINE_H
 
 # include "game.h"
+# include "vector.h"
 
 typedef enum e_wall_face
 {
@@ -26,8 +27,7 @@ typedef enum e_wall_face
 typedef struct s_ray
 {
 	double		camera_x;
-	double		ray_dir_x;
-	double		ray_dir_y;
+	t_vec2		ray_dir;
 	int			map_x;
 	int			map_y;
 	int			step_x;
