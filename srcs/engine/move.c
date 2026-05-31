@@ -76,6 +76,4 @@ void	update_player_state(t_game *game)
 {
 	move_player(game);
 	rotate_player(game);
-	printf("pos=(%.2f %.2f) dir=(%.2f %.2f)\n", game->player->position_x,
-		game->player->position_y, game->player->dir_x, game->player->dir_y);
 }
