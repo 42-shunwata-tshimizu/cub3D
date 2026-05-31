@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/05/23 11:35:38 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/05/31 12:09:15 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,10 @@ MLX_DIR		= libs/minilibx-linux
 MLX_LIB	= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11
 
+MATH_FLAGS = -lm
+
+LIBS =  $(MLX_FLAGS) $(MATH_FLAGS)
+
 INCFLAG		= -I$(INC_DIR) -I$(L_INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -I$(PRINTF_DIR) -I$(ADDITIONAL_DIR)
 CFLAGS		= -Wall -Wextra -Werror $(INCFLAG)
 
@@ -71,10 +75,11 @@ SRC_PARSE   = parse/parse.c\
 			  parse/parse_map.c\
 			  parse/validate_map.c\
 			  parse/has_map_leak.c\
+			  parse/init_direction.c\
 			  parse/find_player.c\
 			  parse/calc_map_size.c\
 
-SRC_ENGINE    = engine/move_player.c\
+SRC_ENGINE    = engine/move.c\
 
 SRC_RENDER = \
 
@@ -99,7 +104,7 @@ OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT_A) $(OBJS) $(MLX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(LIBS) -o $@
 	@echo "$(GREEN)✅ Compiled: $(NAME)$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
