@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:52:12 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/23 18:00:59 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/23 18:34:56 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,33 @@ static void	rotate_player(t_game *game)
 	double	rot;
 	double	old_dir_x;
 	double	old_plane_x;
+	double	cos_r;
+	double	sin_r;
+
+	cos_r = cos(rot);
+	sin_r = sin(rot);
 
 	rot = get_rotate_input(&game->keys) * ROTATE_SPEED;
 	old_dir_x = game->player->dir_x;
-	game->player->dir_x = game->player->dir_x * cos(rot) - game->player->dir_y
-		* sin(rot);
-	game->player->dir_y = old_dir_x * sin(rot) + game->player->dir_y * cos(rot);
+	game->player->dir_x = game->player->dir_x * cos_r - game->player->dir_y
+		* sin_r;
+	game->player->dir_y = old_dir_x * sin_r + game->player->dir_y * cos_r;
 	old_plane_x = game->player->plane_x;
-	game->player->plane_x = game->player->plane_x * cos(rot)
-		- game->player->plane_y * sin(rot);
-	game->player->plane_y = old_plane_x * sin(rot) + game->player->plane_y
-		* cos(rot);
+	game->player->plane_x = game->player->plane_x * cos_r
+		- game->player->plane_y * sin_r;
+	game->player->plane_y = old_plane_x * sin_r + game->player->plane_y
+		* cos_r;
 }
 
 void	update_player_state(t_game *game)
 {
 	move_player(game);
 	rotate_player(game);
+	printf(
+		"pos=(%.2f %.2f) dir=(%.2f %.2f)\n",
+		game->player->position_x,
+		game->player->position_y,
+		game->player->dir_x,
+		game->player->dir_y
+	);
 }
