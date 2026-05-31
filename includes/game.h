@@ -6,12 +6,17 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 14:26:26 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/31 14:02:07 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
+# define MAP_CHAR_WALL '1'
+# define MAP_CHAR_EMPTY ' '
+# define MAP_CHAR_FLOOR '0'
+# define MAP_CHAR_PLAYER "NSEW"
+# define MAP_VALID_CHARS "01NSEW "
 # define NOT_FOUND -1
 # define WIDTH 1280
 # define HEIGHT 720
@@ -71,10 +76,12 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int			position_x;
-	int			position_y;
+	double		position_x;
+	double		position_y;
 	double		dir_x;
 	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_player;
 
 typedef struct s_game
