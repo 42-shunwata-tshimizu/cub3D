@@ -75,6 +75,7 @@ SRC_PARSE   = parse/parse.c\
 			  parse/parse_map.c\
 			  parse/validate_map.c\
 			  parse/has_map_leak.c\
+			  parse/init_direction.c\
 			  parse/find_player.c\
 			  parse/calc_map_size.c\
 

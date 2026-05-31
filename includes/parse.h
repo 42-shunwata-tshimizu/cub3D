@@ -19,6 +19,13 @@
 # include "validation.h"
 # include <stdbool.h>
 
+# define MAP_CHAR_WALL '1'
+# define MAP_CHAR_EMPTY ' '
+# define MAP_CHAR_FLOOR '0'
+# define MAP_CHAR_PLAYER "NSEW"
+# define MAP_VALID_CHARS "01NSEW "
+
+void	init_direction(t_player *player, char c);
 void	calc_map_size(t_game *game);
 char	**extract_map(char **lines, int start, int end);
 bool	has_map_leak(char **map_copy);
