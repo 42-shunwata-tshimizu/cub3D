@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:52:12 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/31 11:25:43 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/31 14:36:40 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,20 @@ static t_vec	get_input_direction(t_keys *keys)
 	return (dir);
 }
 
+static void	update_position(t_game *game, double new_x, double new_y)
+{
+	if (is_walkable(game, new_x, game->player->position_y))
+		game->player->position_x = new_x;
+	if (is_walkable(game, game->player->position_x, new_y))
+		game->player->position_y = new_y;
+}
+
 static void	move_player(t_game *game)
 {
 	t_vec	input;
 	t_vec	move;
+	double	new_x;
+	double	new_y;
 
 	input = get_input_direction(game->keys);
 	move.x = 0;
@@ -37,39 +47,9 @@ static void	move_player(t_game *game)
 	move.y += game->player->dir_y * input.y;
 	move.x += game->player->plane_x * input.x;
 	move.y += game->player->plane_y * input.x;
-	game->player->position_x += move.x * MOVE_SPEED;
-	game->player->position_y += move.y * MOVE_SPEED;
-}
-
-static double	get_rotate_input(t_keys *keys)
-{
-	double	rot;
-
-	rot = 0;
-	rot += keys->key_left;
-	rot -= keys->key_right;
-	return (rot);
-}
-
-static void	rotate_player(t_game *game)
-{
-	double	rot;
-	double	old_dir_x;
-	double	old_plane_x;
-	double	cos_r;
-	double	sin_r;
-
-	rot = get_rotate_input(game->keys) * ROTATE_SPEED;
-	cos_r = cos(rot);
-	sin_r = sin(rot);
-	old_dir_x = game->player->dir_x;
-	game->player->dir_x = game->player->dir_x * cos_r - game->player->dir_y
-		* sin_r;
-	game->player->dir_y = old_dir_x * sin_r + game->player->dir_y * cos_r;
-	old_plane_x = game->player->plane_x;
-	game->player->plane_x = game->player->plane_x * cos_r
-		- game->player->plane_y * sin_r;
-	game->player->plane_y = old_plane_x * sin_r + game->player->plane_y * cos_r;
+	new_x = game->player->position_x + move.x * MOVE_SPEED;
+	new_y = game->player->position_y + move.y * MOVE_SPEED;
+	update_position(game, new_x, new_y);
 }
 
 void	update_player_state(t_game *game)
