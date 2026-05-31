@@ -6,12 +6,17 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/31 10:51:04 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/31 14:02:07 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
+# define MAP_CHAR_WALL '1'
+# define MAP_CHAR_EMPTY ' '
+# define MAP_CHAR_FLOOR '0'
+# define MAP_CHAR_PLAYER "NSEW"
+# define MAP_VALID_CHARS "01NSEW "
 # define NOT_FOUND -1
 # define WIDTH 1280
 # define HEIGHT 720

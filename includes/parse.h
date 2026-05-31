@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:47:47 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/16 18:17:30 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/31 14:02:18 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 # include "utils.h"
 # include "validation.h"
 # include <stdbool.h>
-
-# define MAP_CHAR_WALL '1'
-# define MAP_CHAR_EMPTY ' '
-# define MAP_CHAR_FLOOR '0'
-# define MAP_CHAR_PLAYER "NSEW"
-# define MAP_VALID_CHARS "01NSEW "
 
 void	calc_map_size(t_game *game);
 char	**extract_map(char **lines, int start, int end);
