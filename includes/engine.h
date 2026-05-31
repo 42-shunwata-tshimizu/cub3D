@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 15:52:04 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/05/17 15:51:12 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/05/23 18:03:31 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef ENGINE_H
+# define ENGINE_H
+# define MOVE_SPEED 0.05
+# define ROTATE_SPEED 0.04
 
-# include "../libs/minilibx-linux/mlx.h"
 # include "game.h"
-# include "input.h"
-# include "parse.h"
-# include "read.h"
-# include "utils.h"
-# include "validation.h"
-# include "engine.h"
+# include <math.h>
 
-#endif // CUB3D_H
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+}			t_vec;
+
+void		update_player_state(t_game *game);
+
+#endif // ENGINE_H
