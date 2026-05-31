@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 15:52:04 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/31 10:32:45 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@
 # include "utils.h"
 # include "validation.h"
 # include "engine.h"
+
+
+void	run_game(t_game *game);
 
 #endif // CUB3D_H
