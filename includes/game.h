@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/23 14:26:04 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/05/31 10:51:04 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int			position_x;
-	int			position_y;
+	double		position_x;
+	double		position_y;
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;

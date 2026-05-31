@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/05/31 12:09:15 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/05/31 11:09:13 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ SRC_ENGINE    = engine/move.c\
 
 SRC_RENDER = \
 
-SRC_MAIN    = main.c
+SRC_MAIN    = main.c\
+			  run_game.c
 
 ALL_SRC = \
     $(SRC_VALIDATION) \
