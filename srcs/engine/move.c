@@ -12,9 +12,9 @@
 
 #include "engine.h"
 
-static t_vec	get_input_direction(t_keys *keys)
+static t_vec2	get_input_direction(t_keys *keys)
 {
-	t_vec	dir;
+	t_vec2	dir;
 
 	dir.x = 0;
 	dir.y = 0;
@@ -35,8 +35,8 @@ static void	update_position(t_game *game, double new_x, double new_y)
 
 static void	move_player(t_game *game)
 {
-	t_vec	input;
-	t_vec	move;
+	t_vec2	input;
+	t_vec2	move;
 	double	new_x;
 	double	new_y;
 
