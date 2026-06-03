@@ -47,12 +47,6 @@ typedef struct s_ray
 	t_wall_face		face;
 }					t_ray;
 
-typedef struct s_vec
-{
-	double			x;
-	double			y;
-}					t_vec;
-
 bool				is_walkable(t_game *game, double x, double y);
 void				rotate_player(t_game *game);
 void				update_player_state(t_game *game);
