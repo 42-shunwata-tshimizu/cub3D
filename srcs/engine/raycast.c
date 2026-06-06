@@ -25,8 +25,8 @@ static t_coordinate	get_player_center(const t_game *game)
 {
 	t_coordinate	player;
 
-	player.x = game->player->position_x + 0.5;
-	player.y = game->player->position_y + 0.5;
+	player.x = game->player->position_x;
+	player.y = game->player->position_y;
 	return (player);
 }
 
