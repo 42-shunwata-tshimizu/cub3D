@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/05/31 14:37:50 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/06/06 14:52:36 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ GREEN   = \033[0;32m
 RED     = \033[0;31m
 YELLOW  = \033[0;33m
 RESET   = \033[0m
+CYAN = \033[0;36m
+NC = \033[0m
 
 # ========================
 #       CONFIGURATION
@@ -146,6 +148,30 @@ valgrind: re
 # ========================
 run: all
 	./$(NAME) ./resource/settings/test.cub
+
+norm:
+	@for i in 0 20 40 60 80 100; do \
+		filled=$$((i / 5)); \
+		printf "\r$(CYAN)Norminette $(RESET)["; \
+		for j in $$(seq 1 $$filled); do printf "="; done; \
+		for j in $$(seq $$((filled + 1)) 20); do printf " "; done; \
+		printf "] %3d%%" $$i; \
+		sleep 0.1; \
+	done
+	@printf "\n"
+	@output=$$(norminette includes srcs); \
+	count=$$(printf "%s\n" "$$output" | grep -c "Error"); \
+	if [ $$count -eq 0 ]; then \
+		printf "$(GREEN)✓ Norm OK$(RESET)\n"; \
+	else \
+		printf "$(RED)✗ %s norm error(s) found$(RESET)\n\n" "$$count"; \
+		printf "%s\n" "$$output" | awk '\
+			/^.*\.[ch]:/ {file=$$0; next} \
+			/Error/ { \
+				printf "\033[0;34m%s\033[0m\n", file; \
+				printf "\033[0;31m%s\033[0m\n\n", $$0; \
+			}'; \
+	fi
 
 # ========================
 #       CLEANING
