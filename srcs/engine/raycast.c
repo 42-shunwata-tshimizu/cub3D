@@ -14,62 +14,81 @@
 #include "libft.h"
 #include <math.h>
 
-static double	get_delta_dist(double ray_dir)
+typedef enum e_hit_axis
+{
+	HIT_VERTICAL_SIDE,
+	HIT_HORIZONTAL_SIDE
+}					t_hit_axis;
+
+typedef struct s_dda
+{
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	t_hit_axis	hit_axis;
+}				t_dda;
+
+static double	get_axis_delta_dist(double ray_dir)
 {
 	if (ray_dir == 0.0)
 		return (1e30);
 	return (fabs(1.0 / ray_dir));
 }
 
-static t_coordinate	get_player_center(const t_game *game)
+static t_coordinate	get_ray_origin(const t_game *game)
 {
-	t_coordinate	player;
+	t_coordinate	origin;
 
-	player.x = game->player->position_x;
-	player.y = game->player->position_y;
-	return (player);
+	origin.x = game->player->position_x;
+	origin.y = game->player->position_y;
+	return (origin);
 }
 
-static void	set_ray_start(const t_game *game, int screen_x, t_ray *ray)
+static void	init_ray(const t_game *game, int screen_x, t_ray *ray)
 {
 	t_vec2	dir;
 	t_vec2	plane;
 
-	ray->player = get_player_center(game);
+	ray->origin = get_ray_origin(game);
 	dir = vec2(game->player->dir_x, game->player->dir_y);
 	plane = vec2_scale(vec2_perpendicular(dir), 0.66);
 	ray->camera_x = 2.0 * screen_x / (double)WIDTH - 1.0;
 	ray->ray_dir = vec2_add(dir, vec2_scale(plane, ray->camera_x));
-	ray->map_x = (int)ray->player.x;
-	ray->map_y = (int)ray->player.y;
-	ray->delta_dist_x = get_delta_dist(ray->ray_dir.x);
-	ray->delta_dist_y = get_delta_dist(ray->ray_dir.y);
 }
 
-static void	set_ray_step(t_ray *ray)
+static void	init_dda(const t_ray *ray, t_dda *dda)
 {
+	dda->map_x = (int)ray->origin.x;
+	dda->map_y = (int)ray->origin.y;
+	dda->delta_dist_x = get_axis_delta_dist(ray->ray_dir.x);
+	dda->delta_dist_y = get_axis_delta_dist(ray->ray_dir.y);
 	if (ray->ray_dir.x < 0)
 	{
-		ray->step_x = -1;
-		ray->side_dist_x = (ray->player.x - ray->map_x)
-			* ray->delta_dist_x;
+		dda->step_x = -1;
+		dda->side_dist_x = (ray->origin.x - dda->map_x)
+			* dda->delta_dist_x;
 	}
 	else
 	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - ray->player.x)
-			* ray->delta_dist_x;
+		dda->step_x = 1;
+		dda->side_dist_x = (dda->map_x + 1.0 - ray->origin.x)
+			* dda->delta_dist_x;
 	}
 	if (ray->ray_dir.y < 0)
 	{
-		ray->step_y = -1;
-		ray->side_dist_y = (ray->player.y - ray->map_y)
-			* ray->delta_dist_y;
+		dda->step_y = -1;
+		dda->side_dist_y = (ray->origin.y - dda->map_y)
+			* dda->delta_dist_y;
 		return ;
 	}
-	ray->step_y = 1;
-	ray->side_dist_y = (ray->map_y + 1.0 - ray->player.y)
-		* ray->delta_dist_y;
+	dda->step_y = 1;
+	dda->side_dist_y = (dda->map_y + 1.0 - ray->origin.y)
+		* dda->delta_dist_y;
 }
 
 static bool	is_wall(const t_map *map, int x, int y)
@@ -84,60 +103,64 @@ static bool	is_wall(const t_map *map, int x, int y)
 	return (map->map_data[y][x] == '1' || map->map_data[y][x] == ' ');
 }
 
-static void	set_x_hit(t_ray *ray)
+static void	set_vertical_hit(t_ray *ray, const t_dda *dda)
 {
-	ray->wall_dist = (ray->map_x - ray->player.x
-			+ (1 - ray->step_x) / 2.0) / ray->ray_dir.x;
-	ray->wall_x = ray->player.y + ray->wall_dist * ray->ray_dir.y;
+	ray->wall_dist = (dda->map_x - ray->origin.x
+			+ (1 - dda->step_x) / 2.0) / ray->ray_dir.x;
+	ray->wall_hit_pos = ray->origin.y + ray->wall_dist * ray->ray_dir.y;
 	ray->face = WALL_EAST;
-	if (ray->step_x > 0)
+	if (dda->step_x > 0)
 		ray->face = WALL_WEST;
 }
 
-static void	set_y_hit(t_ray *ray)
+static void	set_horizontal_hit(t_ray *ray, const t_dda *dda)
 {
-	ray->wall_dist = (ray->map_y - ray->player.y
-			+ (1 - ray->step_y) / 2.0) / ray->ray_dir.y;
-	ray->wall_x = ray->player.x + ray->wall_dist * ray->ray_dir.x;
+	ray->wall_dist = (dda->map_y - ray->origin.y
+			+ (1 - dda->step_y) / 2.0) / ray->ray_dir.y;
+	ray->wall_hit_pos = ray->origin.x + ray->wall_dist * ray->ray_dir.x;
 	ray->face = WALL_SOUTH;
-	if (ray->step_y > 0)
+	if (dda->step_y > 0)
 		ray->face = WALL_NORTH;
 }
 
-static void	walk_ray(const t_map *map, t_ray *ray)
+static void	walk_ray(const t_map *map, t_dda *dda)
 {
 	while (true)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
+		if (dda->side_dist_x < dda->side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
+			dda->side_dist_x += dda->delta_dist_x;
+			dda->map_x += dda->step_x;
+			dda->hit_axis = HIT_VERTICAL_SIDE;
 		}
 		else
 		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
+			dda->side_dist_y += dda->delta_dist_y;
+			dda->map_y += dda->step_y;
+			dda->hit_axis = HIT_HORIZONTAL_SIDE;
 		}
-		if (is_wall(map, ray->map_x, ray->map_y))
+		if (is_wall(map, dda->map_x, dda->map_y))
 			return ;
 	}
 }
 
-static void	set_hit(t_ray *ray)
+static void	set_wall_hit(t_ray *ray, const t_dda *dda)
 {
-	if (ray->side == 0)
-		set_x_hit(ray);
+	if (dda->hit_axis == HIT_VERTICAL_SIDE)
+		set_vertical_hit(ray, dda);
 	else
-		set_y_hit(ray);
-	ray->wall_x -= floor(ray->wall_x);
+		set_horizontal_hit(ray, dda);
+	ray->wall_hit_pos -= floor(ray->wall_hit_pos);
 }
 
-void	cast_ray(const t_game *game, int screen_x, t_ray *ray)
+t_ray	cast_ray(const t_game *game, int screen_x)
 {
-	set_ray_start(game, screen_x, ray);
-	set_ray_step(ray);
-	walk_ray(game->map, ray);
-	set_hit(ray);
+	t_ray	ray;
+	t_dda	dda;
+
+	init_ray(game, screen_x, &ray);
+	init_dda(&ray, &dda);
+	walk_ray(game->map, &dda);
+	set_wall_hit(&ray, &dda);
+	return (ray);
 }

@@ -30,26 +30,17 @@ typedef enum e_wall_face
 
 typedef struct s_ray
 {
-	t_coordinate	player;
+	t_coordinate	origin;
 	double			camera_x;
 	t_vec2			ray_dir;
-	int				map_x;
-	int				map_y;
-	int				step_x;
-	int				step_y;
-	double			delta_dist_x;
-	double			delta_dist_y;
-	double			side_dist_x;
-	double			side_dist_y;
 	double			wall_dist;
-	double			wall_x;
-	int				side;
+	double			wall_hit_pos;
 	t_wall_face		face;
 }					t_ray;
 
 bool				is_walkable(t_game *game, double x, double y);
 void				rotate_player(t_game *game);
 void				update_player_state(t_game *game);
-void				cast_ray(const t_game *game, int screen_x, t_ray *ray);
+t_ray				cast_ray(const t_game *game, int screen_x);
 
 #endif // ENGINE_H
