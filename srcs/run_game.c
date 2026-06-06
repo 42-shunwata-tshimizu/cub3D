@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 10:31:39 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/06/06 11:26:55 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/06 11:31:18 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	game_loop(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-
 	if (game->keys->key_esc)
 		close_window(game);
 	update_player_state(game);
