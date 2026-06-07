@@ -60,16 +60,16 @@ static bool	load_texture(void *mlx, t_texture *texture, char *path)
 
 static bool	init_textures_struct(t_game *game)
 {
-	if (!load_texture(game->mlx, &game->textures->north,
+	if (!load_texture(game->mlx, &game->textures.north,
 			game->map->north_texture))
 		return (false);
-	if (!load_texture(game->mlx, &game->textures->south,
+	if (!load_texture(game->mlx, &game->textures.south,
 			game->map->south_texture))
 		return (false);
-	if (!load_texture(game->mlx, &game->textures->west,
+	if (!load_texture(game->mlx, &game->textures.west,
 			game->map->west_texture))
 		return (false);
-	if (!load_texture(game->mlx, &game->textures->east,
+	if (!load_texture(game->mlx, &game->textures.east,
 			game->map->east_texture))
 		return (false);
 	return (true);
@@ -92,6 +92,8 @@ t_game	*setup_game(int argc, char *argv[])
 	if (!init_image_struct(game))
 		return (free_array(lines), free_game(game), NULL);
 	if (!parse(lines, game))
+		return (free_array(lines), free_game(game), NULL);
+	if (!init_textures_struct(game))
 		return (free_array(lines), free_game(game), NULL);
 	free_array(lines);
 	return (game);

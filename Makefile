@@ -67,6 +67,8 @@ SRC_READ   = read/read_file.c\
 SRC_UTILS   = utils/free_utils.c\
 			   utils/string_utils.c\
 			   utils/validate_utils.c\
+			   utils/free_array.c\
+			   utils/read_utils.c\
 
 SRC_INPUT   = input/key.c\
 			  input/close_window.c\
@@ -90,7 +92,8 @@ SRC_ENGINE  = engine/raycast.c\
 SRC_RENDER = \
 
 SRC_MAIN    = main.c\
-			  run_game.c
+			  run_game.c\
+			  setup_game.c
 
 ALL_SRC = \
     $(SRC_VALIDATION) \

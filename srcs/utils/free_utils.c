@@ -6,56 +6,64 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/17 14:24:34 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/07 23:22:39 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void	free_array(char **arr)
+static void	free_textures(t_game *game)
 {
-	int	i;
-
-	if (!arr)
+	if (!game->mlx)
 		return ;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
+	if (game->textures.north.img)
+		mlx_destroy_image(game->mlx, game->textures.north.img);
+	if (game->textures.south.img)
+		mlx_destroy_image(game->mlx, game->textures.south.img);
+	if (game->textures.west.img)
+		mlx_destroy_image(game->mlx, game->textures.west.img);
+	if (game->textures.east.img)
+		mlx_destroy_image(game->mlx, game->textures.east.img);
 }
 
-void	ft_noop(void *ptr)
+static void	free_image(t_game *game)
 {
-	(void)ptr;
+	if (game->mlx && game->image.img)
+		mlx_destroy_image(game->mlx, game->image.img);
 }
 
-void	free_game(t_game *game)
+static void	free_map(t_map *map)
 {
-	if (!game)
+	if (!map)
 		return ;
-	if (game->map)
-	{
-		if (game->map->map_data)
-			free_array(game->map->map_data);
-		free(game->map->north_texture);
-		free(game->map->south_texture);
-		free(game->map->west_texture);
-		free(game->map->east_texture);
-		free(game->map);
-	}
-	if (game->player)
-		free(game->player);
-	if (game->keys)
-		free(game->keys);
-	if (game ->mlx_win)
+	free_array(map->map_data);
+	free(map->north_texture);
+	free(map->south_texture);
+	free(map->west_texture);
+	free(map->east_texture);
+	free(map);
+}
+
+static void	free_mlx(t_game *game)
+{
+	if (game->mlx_win)
 		mlx_destroy_window(game->mlx, game->mlx_win);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+}
+
+void	free_game(t_game *game)
+{
+	if (!game)
+		return ;
+	free_textures(game);
+	free_image(game);
+	free_map(game->map);
+	free(game->player);
+	free(game->keys);
+	free_mlx(game);
 	free(game);
 }
