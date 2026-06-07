@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/06/06 14:52:36 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/06/07 22:23:23 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,9 +81,11 @@ SRC_PARSE   = parse/parse.c\
 			  parse/find_player.c\
 			  parse/calc_map_size.c\
 
-SRC_ENGINE    = engine/move.c\
-				engine/collision.c\
-				engine/rotate.c\
+SRC_ENGINE  = engine/raycast.c\
+			  engine/vector.c\
+			  engine/move.c\
+		 	  engine/collision.c\
+			  engine/rotate.c\
 
 SRC_RENDER = \
 
