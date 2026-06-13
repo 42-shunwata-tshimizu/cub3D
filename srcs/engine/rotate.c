@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 14:27:10 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/31 14:27:42 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/13 16:20:23 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static double	get_rotate_input(t_keys *keys)
 	double	rot;
 
 	rot = 0;
-	rot += keys->key_left;
-	rot -= keys->key_right;
+	rot -= keys->key_left;
+	rot += keys->key_right;
 	return (rot);
 }
 

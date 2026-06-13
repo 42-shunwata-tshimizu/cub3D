@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 16:32:57 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/17 16:32:59 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/06/13 16:59:42 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ typedef enum e_hit_axis
 
 typedef struct s_dda
 {
-	int			map_x;
-	int			map_y;
-	int			step_x;
-	int			step_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	t_hit_axis	hit_axis;
-}				t_dda;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	t_hit_axis		hit_axis;
+}					t_dda;
 
 static double	get_axis_delta_dist(double ray_dir)
 {
@@ -70,8 +70,7 @@ static void	init_dda(const t_ray *ray, t_dda *dda)
 	if (ray->ray_dir.x < 0)
 	{
 		dda->step_x = -1;
-		dda->side_dist_x = (ray->origin.x - dda->map_x)
-			* dda->delta_dist_x;
+		dda->side_dist_x = (ray->origin.x - dda->map_x) * dda->delta_dist_x;
 	}
 	else
 	{
@@ -82,13 +81,11 @@ static void	init_dda(const t_ray *ray, t_dda *dda)
 	if (ray->ray_dir.y < 0)
 	{
 		dda->step_y = -1;
-		dda->side_dist_y = (ray->origin.y - dda->map_y)
-			* dda->delta_dist_y;
+		dda->side_dist_y = (ray->origin.y - dda->map_y) * dda->delta_dist_y;
 		return ;
 	}
 	dda->step_y = 1;
-	dda->side_dist_y = (dda->map_y + 1.0 - ray->origin.y)
-		* dda->delta_dist_y;
+	dda->side_dist_y = (dda->map_y + 1.0 - ray->origin.y) * dda->delta_dist_y;
 }
 
 static bool	is_wall(const t_map *map, int x, int y)
@@ -105,8 +102,7 @@ static bool	is_wall(const t_map *map, int x, int y)
 
 static void	set_vertical_hit(t_ray *ray, const t_dda *dda)
 {
-	ray->wall_dist = (dda->map_x - ray->origin.x
-			+ (1 - dda->step_x) / 2.0) / ray->ray_dir.x;
+	ray->wall_dist = dda->side_dist_x - dda->delta_dist_x;
 	ray->wall_hit_pos = ray->origin.y + ray->wall_dist * ray->ray_dir.y;
 	ray->face = WALL_EAST;
 	if (dda->step_x > 0)
@@ -115,8 +111,7 @@ static void	set_vertical_hit(t_ray *ray, const t_dda *dda)
 
 static void	set_horizontal_hit(t_ray *ray, const t_dda *dda)
 {
-	ray->wall_dist = (dda->map_y - ray->origin.y
-			+ (1 - dda->step_y) / 2.0) / ray->ray_dir.y;
+	ray->wall_dist = dda->side_dist_y - dda->delta_dist_y;
 	ray->wall_hit_pos = ray->origin.x + ray->wall_dist * ray->ray_dir.x;
 	ray->face = WALL_SOUTH;
 	if (dda->step_y > 0)

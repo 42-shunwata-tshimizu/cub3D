@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/06/07 22:23:23 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/06/13 12:56:01 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ SRC_ENGINE  = engine/raycast.c\
 		 	  engine/collision.c\
 			  engine/rotate.c\
 
-SRC_RENDER = \
+SRC_RENDER = draw/draw.c\
 
 SRC_MAIN    = main.c\
 			  run_game.c\

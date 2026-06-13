@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 16:32:36 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/31 18:57:15 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:06:59 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include "game.h"
 # include "vector.h"
+#include "libft.h"
 # include <math.h>
 
 typedef enum e_wall_face

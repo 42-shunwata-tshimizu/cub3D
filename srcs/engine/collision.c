@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 13:26:41 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/31 14:08:05 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:12:34 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 static bool	is_empty(t_game *game, double x, double y)
 {
-	char	cell;
+	int		ix;
+	int		iy;
+	size_t	row_len;
 
-	cell = game->map->map_data[(int)y][(int)x];
-	return (cell != MAP_CHAR_WALL && cell != MAP_CHAR_EMPTY);
+	ix = (int)x;
+	iy = (int)y;
+	if (iy < 0 || iy >= game->map->height || ix < 0)
+		return (false);
+	row_len = ft_strlen(game->map->map_data[iy]);
+	if (ix >= (int)row_len)
+		return (false);
+	return (game->map->map_data[iy][ix] != MAP_CHAR_WALL
+		&& game->map->map_data[iy][ix] != MAP_CHAR_EMPTY);
 }
 
 bool	is_walkable(t_game *game, double x, double y)
