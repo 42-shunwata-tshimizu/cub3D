@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 11:52:13 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/07 12:00:28 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/06/14 14:35:31 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 static char	*get_texture_path(char *line)
 {
+	char	*start;
+	char	*end;
 	char	*path;
 
-	path = ft_strdup(skip_space(line + 2));
+	start = skip_space(line + 2);
+	end = start;
+	while (*end && !is_space(*end))
+		end++;
+	if (end == start)
+		return (ft_putstr_fd("Error\nTexture path is missing\n", 2), NULL);
+	if (skip_space(end)[0] != '\0')
+		return (ft_putstr_fd("Error\nTexture path is invalid\n", 2), NULL);
+	path = ft_substr(start, 0, end - start);
 	if (!path)
 		ft_putstr_fd("Error\nmalloc failed\n", 2);
 	return (path);
