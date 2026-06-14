@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 16:32:36 by shunwata          #+#    #+#             */
-/*   Updated: 2026/05/31 18:57:15 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:40:39 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define PLAYER_RADIUS 0.2
 
 # include "game.h"
+# include "libft.h"
 # include "vector.h"
 # include <math.h>
 
@@ -27,6 +28,25 @@ typedef enum e_wall_face
 	WALL_WEST,
 	WALL_EAST
 }					t_wall_face;
+
+typedef enum e_hit_axis
+{
+	HIT_VERTICAL_SIDE,
+	HIT_HORIZONTAL_SIDE
+}					t_hit_axis;
+
+typedef struct s_dda
+{
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	t_hit_axis		hit_axis;
+}					t_dda;
 
 typedef struct s_ray
 {
