@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/06/13 12:56:01 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/06/13 17:48:28 by tshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,7 +146,7 @@ debug: re
 	@echo "$(GREEN)🚀 Debug build ready$(RESET)"
 
 valgrind: re
-	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=readline.supp ./$(NAME)./resource/settings/test.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) ./resource/settings/test.cub
 
 # ========================
 #    TEST / RUN HELPERS
