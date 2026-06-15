@@ -6,23 +6,11 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 11:27:14 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/06/13 17:39:01 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/15 20:00:15 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-
-static void	put_pixel(t_image *image, int x, int y, int color)
-{
-	char	*dst;
-	int		offset;
-
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return ;
-	offset = y * image->line_length + x * (image->bpp / 8);
-	dst = image->addr + offset;
-	*(unsigned int *)dst = (unsigned int)color;
-}
 
 static int	get_texture_color(const t_texture *texture, int tex_x, int tex_y)
 {
@@ -54,24 +42,25 @@ static void	draw_wall_strip(t_game *game, int screen_x, const t_ray *ray)
 	const t_texture	*texture;
 	int				line_height;
 	int				y;
+	int				wall_bottom;
 	int				tex_x;
 
 	texture = get_wall_texture(game, ray->face);
 	line_height = (int)(HEIGHT / ray->wall_dist);
 	if (line_height > HEIGHT * 4)
 		line_height = HEIGHT * 4;
-	y = HEIGHT / 2 - line_height / 2;
+	y = get_wall_top(line_height);
 	if (y < 0)
 		y = 0;
+	wall_bottom = get_wall_bottom(line_height);
 	tex_x = (int)(ray->wall_hit_pos * (double)texture->width);
-	while (y < HEIGHT / 2 + line_height / 2 && y < HEIGHT)
+	while (y < wall_bottom && y < HEIGHT)
 	{
 		put_pixel(&game->image, screen_x, y,
 			get_texture_color(
 				texture,
 				tex_x,
-				(int)((y - (HEIGHT / 2 - line_height / 2))
-					* texture->height / line_height)));
+				get_tex_y(y, line_height, texture->height)));
 		y++;
 	}
 }
