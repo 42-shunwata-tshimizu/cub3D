@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shunwata <shunwata@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 00:50:23 by shunwata          #+#    #+#             */
-/*   Updated: 2026/04/13 19:27:05 by shunwata         ###   ########.fr       */
+/*   Updated: 2026/06/14 15:03:28 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,30 @@ static bool	is_texture_line(const char *line)
 
 static bool	is_texture_path_valid(const char *path)
 {
-	int	len;
+	char	*end;
+	char	*trimmed;
+	int		len;
 
 	if (!path || !path[0])
 		return (ft_putstr_fd("Error\nTexture path is missing\n", 2), false);
-	len = 0;
-	while (path[len] && !is_space(path[len]))
-		len++;
-	if (path[len] != '\0' && path[len] != '\n')
+	end = (char *)path;
+	while (*end && !is_space(*end))
+		end++;
+	if (end == path)
+		return (ft_putstr_fd("Error\nTexture path is missing\n", 2), false);
+	if (skip_space(end)[0] != '\0')
 		return (ft_putstr_fd("Error\nTexture path is invalid\n", 2), false);
-	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
-		return (ft_putstr_fd("Error\nTexture must be xpm file\n", 2), false);
-	if (!is_readable(path))
-		return (perror("Error\nCannot open texture file"), false);
+	len = end - path;
+	trimmed = ft_substr(path, 0, len);
+	if (!trimmed)
+		return (ft_putstr_fd("Error\nmalloc failed\n", 2), false);
+	if (len < 4 || ft_strncmp(trimmed + len - 4, ".xpm", 4) != 0)
+		return (free(trimmed), ft_putstr_fd("Error\nTexture must be xpm file\n",
+				2), false);
+	if (!is_readable(trimmed))
+		return (free(trimmed), perror("Error\nCannot open texture file"),
+			false);
+	free(trimmed);
 	return (true);
 }
 

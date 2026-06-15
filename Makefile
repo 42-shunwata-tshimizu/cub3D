@@ -147,7 +147,7 @@ debug: re
 	@echo "$(GREEN)🚀 Debug build ready$(RESET)"
 
 valgrind: re
-	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=readline.supp ./$(NAME)./resource/settings/test.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) ./resource/settings/test.cub
 
 # ========================
 #    TEST / RUN HELPERS
