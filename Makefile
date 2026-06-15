@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/06/13 17:48:28 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/06/15 20:01:05 by shunwata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC_UTILS   = utils/free_utils.c\
 			   utils/validate_utils.c\
 			   utils/free_array.c\
 			   utils/read_utils.c\
+			   utils/draw_utils.c\
 
 SRC_INPUT   = input/key.c\
 			  input/close_window.c\

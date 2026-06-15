@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 11:27:54 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/06/13 13:03:01 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/15 11:03:47 by shunwata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DRAW_H
 # include "engine.h"
 # include "game.h"
+# include "utils.h"
 # include "mlx.h"
 # include <math.h>
 
