@@ -6,7 +6,7 @@
 #    By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 22:14:58 by tshimizu          #+#    #+#              #
-#    Updated: 2026/06/06 14:52:36 by tshimizu         ###   ########.fr        #
+#    Updated: 2026/06/15 20:01:05 by shunwata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,9 @@ SRC_READ   = read/read_file.c\
 SRC_UTILS   = utils/free_utils.c\
 			   utils/string_utils.c\
 			   utils/validate_utils.c\
+			   utils/free_array.c\
+			   utils/read_utils.c\
+			   utils/draw_utils.c\
 
 SRC_INPUT   = input/key.c\
 			  input/close_window.c\
@@ -81,14 +84,17 @@ SRC_PARSE   = parse/parse.c\
 			  parse/find_player.c\
 			  parse/calc_map_size.c\
 
-SRC_ENGINE    = engine/move.c\
-				engine/collision.c\
-				engine/rotate.c\
+SRC_ENGINE  = engine/raycast.c\
+			  engine/vector.c\
+			  engine/move.c\
+		 	  engine/collision.c\
+			  engine/rotate.c\
 
-SRC_RENDER = \
+SRC_RENDER = draw/draw.c\
 
 SRC_MAIN    = main.c\
-			  run_game.c
+			  run_game.c\
+			  setup_game.c
 
 ALL_SRC = \
     $(SRC_VALIDATION) \
@@ -141,7 +147,7 @@ debug: re
 	@echo "$(GREEN)🚀 Debug build ready$(RESET)"
 
 valgrind: re
-	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=readline.supp ./$(NAME)./resource/settings/test.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) ./resource/settings/test.cub
 
 # ========================
 #    TEST / RUN HELPERS

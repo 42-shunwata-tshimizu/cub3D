@@ -6,7 +6,7 @@
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/05/31 14:02:07 by tshimizu         ###   ########.fr       */
+/*   Updated: 2026/06/06 19:31:05 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,34 @@ typedef enum e_key_codes
 	KEY_ESC = 65307,
 }				t_key_codes;
 
+typedef struct s_image
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+}				t_image;
+
+typedef struct s_texture
+{
+	void		*img;
+	char		*addr;
+	int			width;
+	int			height;
+	int			bpp;
+	int			line_length;
+	int			endian;
+}				t_texture;
+
+typedef struct s_textures
+{
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+}				t_textures;
+
 typedef struct s_keys
 {
 	bool		key_w;
@@ -88,6 +116,8 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*mlx_win;
+	t_image		image;
+	t_textures	textures;
 	t_map		*map;
 	t_player	*player;
 	t_keys		*keys;

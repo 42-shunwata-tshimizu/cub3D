@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   read_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tshimizu <tshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 22:16:04 by tshimizu          #+#    #+#             */
-/*   Updated: 2026/06/13 11:28:55 by tshimizu         ###   ########.fr       */
+/*   Created: 2026/06/07 22:53:31 by tshimizu          #+#    #+#             */
+/*   Updated: 2026/06/07 22:53:35 by tshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "utils.h"
 
-# include "../libs/minilibx-linux/mlx.h"
-# include "draw.h"
-# include "engine.h"
-# include "game.h"
-# include "input.h"
-# include "parse.h"
-# include "read.h"
-# include "utils.h"
-# include "validation.h"
-
-t_game	*setup_game(int argc, char *argv[]);
-void	run_game(t_game *game);
-
-#endif // CUB3D_H
+void	ft_noop(void *ptr)
+{
+	(void)ptr;
+}
