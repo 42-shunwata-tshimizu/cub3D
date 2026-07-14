@@ -204,6 +204,8 @@ Through this project, we learned:
 
 - https://qiita.com/susasaki/items/c74a228d7ddd48b818bd
 
+- https://www.youtube.com/watch?v=NbSee-XM7WA
+
 ### MiniLibX
 
 - MiniLibX Documentation
