@@ -1,9 +1,9 @@
-NO ./resource/textures/planks.xpm
-SO ./resource/textures/grass.xpm
-WE ./resource/textures/wood.xpm
-EA ./resource/textures/greystone.xpm
-F 220,100,0
-C 225,30,0
+NO ./resource/textures/ruins_frame.xpm
+SO ./resource/textures/ruins_vine.xpm
+WE ./resource/textures/ruins_wall.xpm
+EA ./resource/textures/ruins_wood.xpm
+F 163,72,165
+C 59,27,59
 
 
 1111111111111111111111111111111111111111111111111111111111111111111111
